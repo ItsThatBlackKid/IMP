@@ -1,0 +1,18 @@
+c:\users\215358\documents\visual studio 2013\Projects\Imagine Music Player\Imagine Music Player\bin\Debug\Imagine Music Player.exe.config
+c:\users\215358\documents\visual studio 2013\Projects\Imagine Music Player\Imagine Music Player\obj\Debug\Imagine_Music_Player.musicForm.resources
+c:\users\215358\documents\visual studio 2013\Projects\Imagine Music Player\Imagine Music Player\obj\Debug\Imagine_Music_Player.Properties.Resources.resources
+c:\users\215358\documents\visual studio 2013\Projects\Imagine Music Player\Imagine Music Player\obj\Debug\Imagine Music Player.csproj.GenerateResource.Cache
+c:\users\215358\documents\visual studio 2013\Projects\Imagine Music Player\Imagine Music Player\bin\Debug\Imagine Music Player.exe
+c:\users\215358\documents\visual studio 2013\Projects\Imagine Music Player\Imagine Music Player\bin\Debug\Imagine Music Player.pdb
+c:\users\215358\documents\visual studio 2013\Projects\Imagine Music Player\Imagine Music Player\obj\Debug\Imagine Music Player.exe
+c:\users\215358\documents\visual studio 2013\Projects\Imagine Music Player\Imagine Music Player\obj\Debug\Imagine Music Player.pdb
+C:\Users\215358\Documents\Visual Studio 2013\Projects\Imagine Music Player\Imagine Music Player\bin\Debug\EntityFramework.dll
+C:\Users\215358\Documents\Visual Studio 2013\Projects\Imagine Music Player\Imagine Music Player\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\215358\Documents\Visual Studio 2013\Projects\Imagine Music Player\Imagine Music Player\bin\Debug\policy.2.0.taglib-sharp.dll
+C:\Users\215358\Documents\Visual Studio 2013\Projects\Imagine Music Player\Imagine Music Player\bin\Debug\taglib-sharp.dll
+C:\Users\215358\Documents\Visual Studio 2013\Projects\Imagine Music Player\Imagine Music Player\bin\Debug\EntityFramework.xml
+C:\Users\215358\Documents\Visual Studio 2013\Projects\Imagine Music Player\Imagine Music Player\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\215358\Documents\Visual Studio 2013\Projects\Imagine Music Player\Imagine Music Player\bin\Debug\policy.2.0.taglib-sharp.config
+C:\Users\215358\documents\visual studio 2013\Projects\Imagine Music Player\Imagine Music Player\obj\Debug\Interop.WMPLib.dll
+C:\Users\215358\documents\visual studio 2013\Projects\Imagine Music Player\Imagine Music Player\obj\Debug\Imagine Music Player.csproj.ResolveComReference.cache
+C:\Users\215358\documents\visual studio 2013\Projects\Imagine Music Player\Imagine Music Player\obj\Debug\Imagine Music Player.csprojResolveAssemblyReference.cache
