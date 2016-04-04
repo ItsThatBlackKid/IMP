@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,9 +21,13 @@ namespace Imagine_Music_Player
         List<TagLib.File> grabbedMusic = null;
         TagLib.File[] songs = null;
         int chosenItem = 0;
+
         Boolean isPressed = false;
         Boolean songSelected = false;
+        Boolean doShuffle = false;
+
         private double songTime;
+        MediaPlayerManager mpm = new MediaPlayerManager();
 
         WindowsMediaPlayer mPLayer = new WindowsMediaPlayer();
 
@@ -61,7 +66,11 @@ namespace Imagine_Music_Player
             songSelected = false;
             playButton.Text = "Play";
             isPressed = false;
-            
+            showTags(songs[chosenItem].Tag.Title, songs[chosenItem].Tag.FirstPerformer);
+        }
+
+        private void shuffle()
+        {
         }
 
         private void play_click(object sender, EventArgs e)
@@ -71,9 +80,10 @@ namespace Imagine_Music_Player
                 if (!songSelected)
                 {
                     mPLayer.URL = songs[chosenItem].Name;
+                    mPLayer.controls.currentPosition = 250;
                     mPLayer.controls.play();
                     songSelected = true;
-                    
+                    updateBar();
                 }
                 else
                 {
@@ -89,6 +99,64 @@ namespace Imagine_Music_Player
                 mPLayer.controls.pause();
                 playButton.Text = "Play";
                 isPressed = false;
+            }
+        }
+
+        private void updateBar()
+        {
+            progressUpdate.Enabled = true;
+            progressUpdate.Start();
+        }
+
+        private void nextSong() 
+        {
+            Random rnd = new Random();
+            if (checkBox1.Checked == true)
+            {
+                chosenItem = rnd.Next(songs.Length);
+            }
+            else
+            {
+                chosenItem++;
+            }
+             mPLayer.URL = songs[chosenItem].Name;
+            showTags(songs[chosenItem].Tag.Title, songs[chosenItem].Tag.FirstPerformer);
+            mPLayer.controls.stop();
+            mPLayer.controls.play();
+            updateBar();
+        }
+ 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            nextSong();
+            
+        }
+
+        private void showTags(string name, string artist)
+        {
+            name = Regex.Replace(name, "(\\(.*\\))", "");
+            songName.Text = name + " || " + artist;
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            double timeInDouble = songs[chosenItem].Properties.Duration.TotalSeconds;
+            int songTime = (int) timeInDouble;
+
+            songProgress.Maximum = songTime;
+            if (mPLayer.controls.currentPosition != timeInDouble)
+            {
+                songProgress.Value = (int)mPLayer.controls.currentPosition;
+            }
+            else
+            {
+                Console.WriteLine("Ended");
+                nextSong();
+                updateBar();
             }
         }
     }
