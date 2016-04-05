@@ -9,9 +9,8 @@ namespace Imagine_Music_Player
 {
     public class MediaPlayerManager
     {
-         WindowsMediaPlayer wmp = new WindowsMediaPlayer();
 
-        public class Controls
+          class Controls
         {
             public void playNewSong(String songName) 
             {

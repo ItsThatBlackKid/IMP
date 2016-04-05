@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
+            "Add Music"}, -1, System.Drawing.Color.Empty, System.Drawing.SystemColors.ButtonHighlight, new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0))));
             this.libraryPanel = new System.Windows.Forms.Panel();
             this.infoPanel = new System.Windows.Forms.Panel();
             this.songProgress = new System.Windows.Forms.ProgressBar();
@@ -44,6 +46,9 @@
             this.artistColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.fLocal = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.progressUpdate = new System.Windows.Forms.Timer(this.components);
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.userChoicesView = new System.Windows.Forms.ListView();
+            this.libraryPanel.SuspendLayout();
             this.infoPanel.SuspendLayout();
             this.libraryView.SuspendLayout();
             this.SuspendLayout();
@@ -54,6 +59,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.libraryPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.libraryPanel.Controls.Add(this.userChoicesView);
             this.libraryPanel.Location = new System.Drawing.Point(0, 31);
             this.libraryPanel.Name = "libraryPanel";
             this.libraryPanel.Size = new System.Drawing.Size(261, 467);
@@ -163,6 +169,7 @@
             this.albumColumn,
             this.artistColumn,
             this.fLocal});
+            this.fileList.GridLines = true;
             this.fileList.Location = new System.Drawing.Point(-1, -1);
             this.fileList.Name = "fileList";
             this.fileList.Size = new System.Drawing.Size(917, 467);
@@ -193,18 +200,41 @@
             // 
             // progressUpdate
             // 
+            this.progressUpdate.Interval = 1000;
             this.progressUpdate.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // panel1
+            // 
+            this.panel1.Location = new System.Drawing.Point(0, -1);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1178, 33);
+            this.panel1.TabIndex = 1;
+            // 
+            // userChoicesView
+            // 
+            listViewItem1.ToolTipText = "Add new folder for music";
+            this.userChoicesView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem1});
+            this.userChoicesView.Location = new System.Drawing.Point(-1, -1);
+            this.userChoicesView.Name = "userChoicesView";
+            this.userChoicesView.Size = new System.Drawing.Size(261, 467);
+            this.userChoicesView.TabIndex = 1;
+            this.userChoicesView.UseCompatibleStateImageBehavior = false;
+            this.userChoicesView.View = System.Windows.Forms.View.Tile;
             // 
             // musicForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1181, 582);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.libraryView);
             this.Controls.Add(this.infoPanel);
             this.Controls.Add(this.libraryPanel);
             this.Name = "musicForm";
             this.Text = "Imagine Music Player";
+            this.Load += new System.EventHandler(this.musicForm_Load);
+            this.libraryPanel.ResumeLayout(false);
             this.infoPanel.ResumeLayout(false);
             this.infoPanel.PerformLayout();
             this.libraryView.ResumeLayout(false);
@@ -229,6 +259,8 @@
         private System.Windows.Forms.Label songName;
         private System.Windows.Forms.ProgressBar songProgress;
         private System.Windows.Forms.Timer progressUpdate;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.ListView userChoicesView;
 
     }
 }
