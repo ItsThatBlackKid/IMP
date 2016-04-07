@@ -16,3 +16,5 @@ C:\Users\215358\Documents\Visual Studio 2013\Projects\Imagine Music Player\Imagi
 C:\Users\215358\documents\visual studio 2013\Projects\Imagine Music Player\Imagine Music Player\obj\Debug\Interop.WMPLib.dll
 C:\Users\215358\documents\visual studio 2013\Projects\Imagine Music Player\Imagine Music Player\obj\Debug\Imagine Music Player.csproj.ResolveComReference.cache
 C:\Users\215358\documents\visual studio 2013\Projects\Imagine Music Player\Imagine Music Player\obj\Debug\Imagine Music Player.csprojResolveAssemblyReference.cache
+C:\Users\215358\documents\visual studio 2013\Projects\Imagine Music Player\Imagine Music Player\bin\Debug\CSCore.dll
+C:\Users\215358\documents\visual studio 2013\Projects\Imagine Music Player\Imagine Music Player\bin\Debug\CSCore.xml

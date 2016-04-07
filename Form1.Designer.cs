@@ -29,10 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
-            "Add Music"}, -1, System.Drawing.Color.Empty, System.Drawing.SystemColors.ButtonHighlight, new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0))));
             this.libraryPanel = new System.Windows.Forms.Panel();
             this.infoPanel = new System.Windows.Forms.Panel();
+            this.albumBox = new System.Windows.Forms.PictureBox();
             this.songProgress = new System.Windows.Forms.ProgressBar();
             this.songName = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
@@ -47,9 +46,8 @@
             this.fLocal = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.progressUpdate = new System.Windows.Forms.Timer(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
-            this.userChoicesView = new System.Windows.Forms.ListView();
-            this.libraryPanel.SuspendLayout();
             this.infoPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.albumBox)).BeginInit();
             this.libraryView.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,7 +57,6 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.libraryPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.libraryPanel.Controls.Add(this.userChoicesView);
             this.libraryPanel.Location = new System.Drawing.Point(0, 31);
             this.libraryPanel.Name = "libraryPanel";
             this.libraryPanel.Size = new System.Drawing.Size(261, 467);
@@ -71,6 +68,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.infoPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.infoPanel.Controls.Add(this.albumBox);
             this.infoPanel.Controls.Add(this.songProgress);
             this.infoPanel.Controls.Add(this.songName);
             this.infoPanel.Controls.Add(this.checkBox1);
@@ -82,10 +80,18 @@
             this.infoPanel.Size = new System.Drawing.Size(1181, 85);
             this.infoPanel.TabIndex = 0;
             // 
+            // albumBox
+            // 
+            this.albumBox.Location = new System.Drawing.Point(980, 5);
+            this.albumBox.Name = "albumBox";
+            this.albumBox.Size = new System.Drawing.Size(140, 69);
+            this.albumBox.TabIndex = 7;
+            this.albumBox.TabStop = false;
+            // 
             // songProgress
             // 
             this.songProgress.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.songProgress.Location = new System.Drawing.Point(356, 70);
+            this.songProgress.Location = new System.Drawing.Point(356, 41);
             this.songProgress.Name = "songProgress";
             this.songProgress.Size = new System.Drawing.Size(494, 10);
             this.songProgress.TabIndex = 6;
@@ -94,7 +100,7 @@
             // 
             this.songName.AutoEllipsis = true;
             this.songName.AutoSize = true;
-            this.songName.Location = new System.Drawing.Point(11, 57);
+            this.songName.Location = new System.Drawing.Point(568, 57);
             this.songName.Name = "songName";
             this.songName.Size = new System.Drawing.Size(138, 17);
             this.songName.TabIndex = 5;
@@ -103,7 +109,7 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(762, 34);
+            this.checkBox1.Location = new System.Drawing.Point(376, 14);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(74, 21);
             this.checkBox1.TabIndex = 4;
@@ -115,18 +121,19 @@
             // 
             this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.button3.Location = new System.Drawing.Point(444, 11);
+            this.button3.Location = new System.Drawing.Point(11, 28);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 34);
             this.button3.TabIndex = 3;
             this.button3.Text = "Back";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button2
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Location = new System.Drawing.Point(664, 9);
+            this.button2.Location = new System.Drawing.Point(226, 24);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 36);
             this.button2.TabIndex = 2;
@@ -139,7 +146,7 @@
             this.playButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.playButton.Location = new System.Drawing.Point(562, 3);
+            this.playButton.Location = new System.Drawing.Point(114, 19);
             this.playButton.Name = "playButton";
             this.playButton.Size = new System.Drawing.Size(75, 52);
             this.playButton.TabIndex = 1;
@@ -177,6 +184,7 @@
             this.fileList.UseCompatibleStateImageBehavior = false;
             this.fileList.View = System.Windows.Forms.View.Details;
             this.fileList.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.show_info);
+            this.fileList.SelectedIndexChanged += new System.EventHandler(this.fileList_SelectedIndexChanged_1);
             // 
             // nameColumn
             // 
@@ -210,18 +218,6 @@
             this.panel1.Size = new System.Drawing.Size(1178, 33);
             this.panel1.TabIndex = 1;
             // 
-            // userChoicesView
-            // 
-            listViewItem1.ToolTipText = "Add new folder for music";
-            this.userChoicesView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1});
-            this.userChoicesView.Location = new System.Drawing.Point(-1, -1);
-            this.userChoicesView.Name = "userChoicesView";
-            this.userChoicesView.Size = new System.Drawing.Size(261, 467);
-            this.userChoicesView.TabIndex = 1;
-            this.userChoicesView.UseCompatibleStateImageBehavior = false;
-            this.userChoicesView.View = System.Windows.Forms.View.Tile;
-            // 
             // musicForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -233,10 +229,11 @@
             this.Controls.Add(this.libraryPanel);
             this.Name = "musicForm";
             this.Text = "Imagine Music Player";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.close_all_processes);
             this.Load += new System.EventHandler(this.musicForm_Load);
-            this.libraryPanel.ResumeLayout(false);
             this.infoPanel.ResumeLayout(false);
             this.infoPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.albumBox)).EndInit();
             this.libraryView.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -260,7 +257,7 @@
         private System.Windows.Forms.ProgressBar songProgress;
         private System.Windows.Forms.Timer progressUpdate;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.ListView userChoicesView;
+        private System.Windows.Forms.PictureBox albumBox;
 
     }
 }

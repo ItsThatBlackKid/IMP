@@ -1,17 +1,20 @@
-﻿using System;
-using System.Text.RegularExpressions;
-using System.IO;
+﻿using CSCore;
+using CSCore.Codecs;
+using CSCore.SoundOut;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Media;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Forms;
 using TagLib;
-using System.Media;
-using System.Windows;
 using WMPLib;
 namespace Imagine_Music_Player
 {
@@ -26,8 +29,8 @@ namespace Imagine_Music_Player
         Boolean songSelected = false;
         Boolean doShuffle = false;
 
-        private double currentPosition;
-        MediaPlayerManager mpm = new MediaPlayerManager();
+        private int currentPosition;
+        MediaPlayerManager MPM = new MediaPlayerManager();
 
         WindowsMediaPlayer mPLayer = new WindowsMediaPlayer();
 
@@ -79,24 +82,27 @@ namespace Imagine_Music_Player
             {
                 if (!songSelected)
                 {
-                    mPLayer.URL = songs[chosenItem].Name;
-                   // mPLayer.controls.currentPosition = 210;
-                    mPLayer.controls.play();
+                    MPM.SONG_URL = songs[chosenItem].Name;
+                    MPM.Play();
+                    Console.WriteLine(MPM.Length);
                     songSelected = true;
-                    updateBar();
+                   updateBar();
                 }
                 else
                 {
-                    mPLayer.controls.currentPosition = currentPosition;
-                    mPLayer.controls.play();
+                  //  mPLayer.controls.currentPosition = currentPosition;
+                  //  mPLayer.controls.play();
+                    MPM.Resume();
                 }
                 playButton.Text = "Pause";
                 isPressed = true;
             }
             else
             {
-                currentPosition = mPLayer.controls.currentPosition;
-                mPLayer.controls.pause();
+               // currentPosition = mPLayer.controls.currentPosition;
+              //  mPLayer.controls.pause();
+                currentPosition = MPM.Position;
+                MPM.Pause();
                 playButton.Text = "Play";
                 isPressed = false;
             }
@@ -151,18 +157,14 @@ namespace Imagine_Music_Player
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            double timeInDouble = Math.Round(songs[chosenItem].Properties.Duration.TotalSeconds);
-            int songLength = (int) timeInDouble;
-            currentPosition = Math.Round(mPLayer.controls.currentPosition);
-           // Math.Round(timeInDouble, 2);
-
-            var positionInt = (int)currentPosition;
+            int songLength = MPM.Length;
+            currentPosition = MPM.Position;
 
             songProgress.Maximum = songLength +1;
             if (currentPosition !=  songLength)
             {
-                songProgress.Value = positionInt;
-                Console.WriteLine(positionInt + "/" + timeInDouble);
+                songProgress.Value = MPM.Position;
+                Console.WriteLine(MPM.Position + "/" + songLength);
                 if (currentPosition == 0)
                 {
                     nextSong();
@@ -174,6 +176,21 @@ namespace Imagine_Music_Player
         private void musicForm_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void fileList_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void close_all_processes(object sender, FormClosingEventArgs e)
+        {
+            MPM.EndSession();
         }
     }
 }
