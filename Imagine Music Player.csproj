@@ -34,7 +34,7 @@
   <ItemGroup>
     <Reference Include="CSCore, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\C# Libraries\CSCore 1.0.2 Release build\CSCore.dll</HintPath>
+      <HintPath>..\..\..\..\C# Libraries\cscore-1.1.0-alpha\cscore-1.1.0-alpha\CSCore\bin\Debug\CSCore.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
@@ -71,7 +71,6 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="LibManager.cs" />
-    <Compile Include="LibraryManager.cs" />
     <Compile Include="MediaPlayerManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
