@@ -34,7 +34,7 @@
             this.albumBox = new System.Windows.Forms.PictureBox();
             this.songProgress = new System.Windows.Forms.ProgressBar();
             this.songName = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.shuffleBox = new System.Windows.Forms.CheckBox();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.playButton = new System.Windows.Forms.Button();
@@ -71,7 +71,7 @@
             this.infoPanel.Controls.Add(this.albumBox);
             this.infoPanel.Controls.Add(this.songProgress);
             this.infoPanel.Controls.Add(this.songName);
-            this.infoPanel.Controls.Add(this.checkBox1);
+            this.infoPanel.Controls.Add(this.shuffleBox);
             this.infoPanel.Controls.Add(this.button3);
             this.infoPanel.Controls.Add(this.button2);
             this.infoPanel.Controls.Add(this.playButton);
@@ -106,16 +106,16 @@
             this.songName.TabIndex = 5;
             this.songName.Text = "Welcome to Imagine!";
             // 
-            // checkBox1
+            // shuffleBox
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(376, 14);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(74, 21);
-            this.checkBox1.TabIndex = 4;
-            this.checkBox1.Text = "Shuffle";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.shuffleBox.AutoSize = true;
+            this.shuffleBox.Location = new System.Drawing.Point(376, 14);
+            this.shuffleBox.Name = "shuffleBox";
+            this.shuffleBox.Size = new System.Drawing.Size(74, 21);
+            this.shuffleBox.TabIndex = 4;
+            this.shuffleBox.Text = "Shuffle";
+            this.shuffleBox.UseVisualStyleBackColor = true;
+            this.shuffleBox.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // button3
             // 
@@ -252,7 +252,7 @@
         private System.Windows.Forms.Button playButton;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox shuffleBox;
         private System.Windows.Forms.Label songName;
         private System.Windows.Forms.ProgressBar songProgress;
         private System.Windows.Forms.Timer progressUpdate;
