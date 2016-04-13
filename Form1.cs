@@ -22,6 +22,7 @@ namespace Imagine_Music_Player
     {
         LibManager Lib = new LibManager();
         int chosenItem = 0;
+        int songInt = -1;
 
         Boolean isPressed = false;
         Boolean songSelected = false;
@@ -31,6 +32,10 @@ namespace Imagine_Music_Player
         MediaPlayerManager MPM = new MediaPlayerManager();
 
         private TagLib.File[] SongQueue;
+        private TagLib.File[] ShuffledQueue;
+
+        private ListViewItem SongList;
+
 
         public musicForm()
         {
@@ -49,40 +54,18 @@ namespace Imagine_Music_Player
             SongQueue = Lib.Songs;
             foreach (TagLib.File file in SongQueue)
             {
-                var songlist = new ListViewItem();
+                SongList = new ListViewItem();
                 if (file.Tag.Title != "")
                 {
-                    songlist.Text = file.Tag.Title;
-                    songlist.SubItems.Add(file.Tag.Album);
-                    songlist.SubItems.Add(file.Tag.FirstPerformer);
-                    songlist.SubItems.Add(file.Name);
+                    SongList.Text = file.Tag.Title;
+                    SongList.SubItems.Add(file.Tag.Album);
+                    SongList.SubItems.Add(file.Tag.FirstPerformer);
+                    SongList.SubItems.Add(file.Name);
                 }
 
-                fileList.Items.Add(songlist);
-            }
-
-            TagLib.File[] shuffled = MPM.ShuffleQueue(SongQueue);
-            foreach(TagLib.File f in shuffled) 
-            {
-                Console.WriteLine(f.Tag.Title);
+                fileList.Items.Add(SongList);
             }
         }
-
-        private void show_info(object sender, ListViewItemSelectionChangedEventArgs e)
-        {
-            MPM.SONG_URL = SongQueue[e.ItemIndex].Name;
-            if (MPM.MusicState == PlaybackState.Playing)
-            {
-                MPM.Stop();
-                MPM.Play();
-            }
-            else
-            {
-                MPM.Play();
-            }
-            playButton.Text = "Pause";
-        }
-
         private void play_click(object sender, EventArgs e)
         {
 
@@ -104,18 +87,40 @@ namespace Imagine_Music_Player
             progressUpdate.Start();
         }
 
+        private void play()
+        {
+            if (MPM.MusicState == PlaybackState.Playing)
+            {
+                MPM.Stop();
+                MPM.Play();
+            }
+            else
+            {
+                MPM.Play();
+            }
+            playButton.Text = "Pause";
+        }
+
         private void nextSong()
         {
-            if()
+            if (shuffleBox.Checked)
+            {
+                songInt++;
+                MPM.NextSong(songInt, ShuffledQueue);
+            }
+            else
+            {
+                chosenItem++;
+                MPM.NextSong(chosenItem, SongQueue);
+            }
         }
- 
+
         private void button2_Click(object sender, EventArgs e)
         {
             nextSong();
-            
         }
 
-        private void showTags(string name, string artist)
+        private void ShowTags(string name, string artist)
         {
             if (name != null)
             {
@@ -130,7 +135,18 @@ namespace Imagine_Music_Player
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-
+            if (shuffleBox.Checked)
+            {
+                ShuffledQueue = MPM.ShuffleQueue(SongQueue);
+                foreach (TagLib.File TF in ShuffledQueue)
+                {
+                    SongList.SubItems.Add(TF.Tag.Title);
+                }
+            }
+            else
+            {
+                SongList.SubItems.Clear();
+            }
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -138,16 +154,11 @@ namespace Imagine_Music_Player
             int songLength = MPM.Length;
             currentPosition = MPM.Position;
 
-            songProgress.Maximum = songLength +1;
-            if (currentPosition !=  songLength)
+            songProgress.Maximum = songLength;
+            if (MPM.TruePosition != MPM.TrueLength)
             {
                 songProgress.Value = MPM.Position;
-                Console.WriteLine(MPM.Position + "/" + songLength);
-                if (currentPosition == 0)
-                {
-                    nextSong();
-
-                }
+                Console.WriteLine(MPM.TruePosition + "/" + MPM.TrueLength);
             }
         }
 
@@ -168,8 +179,16 @@ namespace Imagine_Music_Player
 
         private void close_all_processes(object sender, FormClosingEventArgs e)
         {
-            if(MPM.songPlaying)
-            MPM.EndSession();
+            if (MPM.songPlaying)
+                MPM.EndSession();
+        }
+
+        private void show_info(object sender, ListViewItemSelectionChangedEventArgs e)
+        {
+            chosenItem = e.ItemIndex;
+            MPM.SONG_URL = SongQueue[chosenItem].Name;
+            play();
+            updateBar();
         }
     }
 }

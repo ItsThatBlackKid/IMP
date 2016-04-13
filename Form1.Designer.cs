@@ -39,16 +39,21 @@
             this.button2 = new System.Windows.Forms.Button();
             this.playButton = new System.Windows.Forms.Button();
             this.libraryView = new System.Windows.Forms.Panel();
+            this.MainControl = new System.Windows.Forms.TabControl();
+            this.localTab = new System.Windows.Forms.TabPage();
             this.fileList = new System.Windows.Forms.ListView();
             this.nameColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.albumColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.artistColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.fLocal = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.liveTab = new System.Windows.Forms.TabPage();
             this.progressUpdate = new System.Windows.Forms.Timer(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.infoPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.albumBox)).BeginInit();
             this.libraryView.SuspendLayout();
+            this.MainControl.SuspendLayout();
+            this.localTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // libraryPanel
@@ -160,11 +165,32 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.libraryView.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.libraryView.Controls.Add(this.fileList);
+            this.libraryView.Controls.Add(this.MainControl);
             this.libraryView.Location = new System.Drawing.Point(261, 31);
             this.libraryView.Name = "libraryView";
             this.libraryView.Size = new System.Drawing.Size(917, 467);
             this.libraryView.TabIndex = 3;
+            // 
+            // MainControl
+            // 
+            this.MainControl.Controls.Add(this.localTab);
+            this.MainControl.Controls.Add(this.liveTab);
+            this.MainControl.Location = new System.Drawing.Point(3, -1);
+            this.MainControl.Name = "MainControl";
+            this.MainControl.SelectedIndex = 0;
+            this.MainControl.Size = new System.Drawing.Size(913, 467);
+            this.MainControl.TabIndex = 0;
+            // 
+            // localTab
+            // 
+            this.localTab.Controls.Add(this.fileList);
+            this.localTab.Location = new System.Drawing.Point(4, 25);
+            this.localTab.Name = "localTab";
+            this.localTab.Padding = new System.Windows.Forms.Padding(3);
+            this.localTab.Size = new System.Drawing.Size(905, 438);
+            this.localTab.TabIndex = 0;
+            this.localTab.Text = "Local";
+            this.localTab.UseVisualStyleBackColor = true;
             // 
             // fileList
             // 
@@ -177,14 +203,13 @@
             this.artistColumn,
             this.fLocal});
             this.fileList.GridLines = true;
-            this.fileList.Location = new System.Drawing.Point(-1, -1);
+            this.fileList.Location = new System.Drawing.Point(0, 0);
             this.fileList.Name = "fileList";
-            this.fileList.Size = new System.Drawing.Size(917, 467);
-            this.fileList.TabIndex = 0;
+            this.fileList.Size = new System.Drawing.Size(911, 451);
+            this.fileList.TabIndex = 1;
             this.fileList.UseCompatibleStateImageBehavior = false;
             this.fileList.View = System.Windows.Forms.View.Details;
             this.fileList.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.show_info);
-            this.fileList.SelectedIndexChanged += new System.EventHandler(this.fileList_SelectedIndexChanged_1);
             // 
             // nameColumn
             // 
@@ -205,6 +230,16 @@
             // 
             this.fLocal.Text = "File Location";
             this.fLocal.Width = 105;
+            // 
+            // liveTab
+            // 
+            this.liveTab.Location = new System.Drawing.Point(4, 25);
+            this.liveTab.Name = "liveTab";
+            this.liveTab.Padding = new System.Windows.Forms.Padding(3);
+            this.liveTab.Size = new System.Drawing.Size(905, 438);
+            this.liveTab.TabIndex = 1;
+            this.liveTab.Text = "OneDrive";
+            this.liveTab.UseVisualStyleBackColor = true;
             // 
             // progressUpdate
             // 
@@ -235,6 +270,8 @@
             this.infoPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.albumBox)).EndInit();
             this.libraryView.ResumeLayout(false);
+            this.MainControl.ResumeLayout(false);
+            this.localTab.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -244,11 +281,6 @@
         private System.Windows.Forms.Panel libraryPanel;
         private System.Windows.Forms.Panel infoPanel;
         private System.Windows.Forms.Panel libraryView;
-        private System.Windows.Forms.ListView fileList;
-        private System.Windows.Forms.ColumnHeader nameColumn;
-        private System.Windows.Forms.ColumnHeader albumColumn;
-        private System.Windows.Forms.ColumnHeader artistColumn;
-        private System.Windows.Forms.ColumnHeader fLocal;
         private System.Windows.Forms.Button playButton;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
@@ -258,6 +290,14 @@
         private System.Windows.Forms.Timer progressUpdate;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox albumBox;
+        private System.Windows.Forms.TabControl MainControl;
+        private System.Windows.Forms.TabPage localTab;
+        private System.Windows.Forms.ListView fileList;
+        private System.Windows.Forms.ColumnHeader nameColumn;
+        private System.Windows.Forms.ColumnHeader albumColumn;
+        private System.Windows.Forms.ColumnHeader artistColumn;
+        private System.Windows.Forms.ColumnHeader fLocal;
+        private System.Windows.Forms.TabPage liveTab;
 
     }
 }

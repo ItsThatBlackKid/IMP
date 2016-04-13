@@ -19,3 +19,6 @@ C:\Users\215358\documents\visual studio 2013\Projects\Imagine Music Player\Imagi
 C:\Users\215358\documents\visual studio 2013\Projects\Imagine Music Player\Imagine Music Player\bin\Debug\CSCore.dll
 C:\Users\215358\documents\visual studio 2013\Projects\Imagine Music Player\Imagine Music Player\bin\Debug\CSCore.xml
 C:\Users\215358\documents\visual studio 2013\Projects\Imagine Music Player\Imagine Music Player\bin\Debug\CSCore.pdb
+C:\Users\215358\documents\visual studio 2013\Projects\Imagine Music Player\Imagine Music Player\bin\Debug\Newtonsoft.Json.dll
+C:\Users\215358\documents\visual studio 2013\Projects\Imagine Music Player\Imagine Music Player\bin\Debug\OneDriveSdk.dll
+C:\Users\215358\documents\visual studio 2013\Projects\Imagine Music Player\Imagine Music Player\bin\Debug\Newtonsoft.Json.xml

@@ -26,9 +26,7 @@ namespace Imagine_Music_Player
                     songs.Add(TagLib.File.Create(s));
                 }
             }
-
-            songs.OrderBy(x => x.Tag.Title);
-            //songs.Sort((x, y) => String.Compare(x.Tag.Title, y.Tag.Title));
+            songs.Sort((x, y) => String.Compare(x.Tag.Title, y.Tag.Title));
 
             return songs;
         }

@@ -20,17 +20,43 @@ namespace Imagine_Music_Player
 
         private PlaybackState music_state;
 
+        private TimeSpan Round(TimeSpan input)
+        {
+            if (input < TimeSpan.Zero)
+            {
+                return -Round(-input);
+            }
+            int minutes = (int) input.TotalMinutes;
+            if(input.Seconds >= 30) 
+            {
+                minutes++;
+            }
+
+            return TimeSpan.FromHours(minutes);
+        }
+
         public int Length 
         {
             get {return (int)songURL.GetLength().TotalSeconds;}
         }
+
+        public TimeSpan TrueLength
+        {
+            get { return songURL.GetLength(); }
+        }
+
+
         public int Position 
         {
             get{return (int)songURL.GetPosition().TotalSeconds;}
             set{Position = value;}
         }
 
-        private TagLib.File[] SongQueue;
+        public TimeSpan TruePosition
+        {
+            get { return Round(songURL.GetPosition()); }
+        }
+
         private IWaveSource songURL;
         private ISoundOut Output;
         public Boolean songPlaying;
@@ -78,6 +104,8 @@ namespace Imagine_Music_Player
         public void NextSong(int i, TagLib.File[] queue)
         {
             SONG_URL = queue[i].Name;
+            Stop();
+            Play();
         }
 
         public void Pause()
